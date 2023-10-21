@@ -1,0 +1,181 @@
+@font-face {
+    font-family: 'SourceSansPro';
+    font-weight: 400;
+    src: 
+    url(../fonts/Sourcesanspro/SourceSansPro-Regular.otf) format('otf'),
+    url(../fonts/Sourcesanspro/SourceSansPro-Regular.ttf) format('ttf'), 
+    url(../fonts/Sourcesanspro/SourceSansPro-Regular.woff) format('woff');
+}
+
+@mixin desktop {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 1199px) {
+        @content;
+    }
+}@mixin mobile {
+    @media screen and (min-width: 240px) and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin h1 {
+    font-size: 80px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 60px;
+    }
+    @include mobile{
+        font-size: 40px;
+    }
+}
+@mixin h2 {
+    font-size: 44px;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 32px;
+    }
+    @include mobile{
+        font-size: 26px;
+    }
+}
+@mixin subh2 {
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 18px;
+    }
+    @include mobile{
+        font-size: 16px;
+    }
+}
+@mixin h3 {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 18px;
+    }
+    @include mobile{
+        font-size: 16px;
+    }
+}
+@mixin menuText {
+    color: $secondaryTextColor;
+    font-family: 'SourceSansPro';
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 18px;
+    }
+}
+@mixin heroDescription {
+    color: $secondaryTextColor;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 5.4px;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 16px;
+    }
+}
+
+@mixin paragraph {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    @include tablet{
+        font-size: 16px;
+    }
+    @include mobile{
+        font-size: 18px;
+    }
+}
+@mixin userName {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 16px;
+    }
+    @include mobile{
+        font-size: 18px;
+    }
+}
+@mixin data {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include tablet{
+        font-size: 12px;
+    }
+    @include mobile{
+        font-size: 14px;
+    }
+}
+@mixin adresslink {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@mixin contacts{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    @include tablet{
+        font-size: 18px;
+    }
+    @include mobile{
+        font-size: 16px;
+    }
+}
+@mixin copyright {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: capitalize;
+    @include mobile{
+        font-size: 12px;
+    }
+}
+@mixin btn-large {
+    width: max-content;
+    display: block;
+    position: relative;
+    font-family: inherit;
+    @include userName;
+    line-height: 27px; 
+    color: $primaryTextColor;
+    background-color: transparent;
+    transition: all $transitionFunc;
+    padding: 11px 34px;
+    border: 1px solid $borderColor;
+    &:hover, &:focus{
+        color: $secondaryTextColor;
+        background-color: $blueBgColor;
+        border: 2px solid $blueBgColor;
+    }
+}
+@mixin dots {
+    width: 9px;
+    height: 9px;
+    color: transparent;
+    background-color: transparent;
+    border: 1px solid $secondaryTextColor;
+    border-radius: 50%;
+    &:hover, &:focus{
+        color: $secondaryTextColor;
+        background-color: $secondaryTextColor;
+    }
+}
