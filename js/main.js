@@ -1,78 +1,43 @@
 $(document).ready(function () {
-  $('.products-list').slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
+  $('.hero').slick({
+    dots: true,
+    arrows: false,
     infinite: true,
-    dots: false,
-    arrows: true,
-    responsive: [
-      {
-          breakpoint: 1380,
-          settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false,
-              arrows: true,
-          }
-      },
-      {
-          breakpoint: 968,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            dots: true,
-            arrows: true
-          }
-      },
-      {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-            arrows: false
-          }
-      },
-  ]
+    autoplay: false,
+    speed: 700,
+    slidesToShow: 1,
+    vertical: true
   });
 
-  $('.partners-list').slick({
-    slidesToShow: 8,
-    slidesToScroll: 1,
-    infinite: true,
-    dots: false,
+  $('.news-list').slick({
+    centerMode: true,
+    centerPadding: '30px',
+    dots: true,
     arrows: true,
+    infinite: true,
+    autoplay: false,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    vertical: false,
     responsive: [
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 6,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: false,
-                arrows: true,
-            }
-        },
-        {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              dots: true,
-              arrows: false
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              dots: true,
-              arrows: false
-            }
-        },
-    ]
+            {
+                breakpoint:1380,
+                settings:{
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    autoplay: false,
+                }
+            },
+            {
+              breakpoint: 767,
+              settings:{
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  autoplay: false,
+              }            
+          }
+            ]
   });
 
   function toggleMenu(e) {
@@ -83,69 +48,53 @@ $(document).ready(function () {
     $('.header').toggleClass('menu-open');
     $('.footer').toggleClass('active');
   }
+
   $('.hamburger').on('click', function (event) {
     toggleMenu(event);
   });
 
-  var backgroundImages = [
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage1_desktop-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage2_desktop-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage3_desktop-2x.jpg)'
-  ];
-  var backgroundImagesTablet = [
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage1_tablet-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage2_tablet-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage3_tablet-2x.jpg)'
-  ];
-  var backgroundImagesMobile = [
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage1_mobile-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage2_mobile-2x.jpg)',
-    'linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(217, 217, 217, 0.00) 100%), url(./assets/images/heroImage3_mobile-2x.jpg)'
-  ];
-  var textContents = [
-    'find your own style',
-    'expand your horizons',
-    'discover new options'
-  ];
-  var currentIndex = 0;
+  // scroll
+  $('a[href^="#"]').on('click', function () {
 
-  $('#btn-next').on('click', function (event) {
-    var windowWidth = $(window).width();
-    if (windowWidth > 1199) {
-      $('.hero').css('background-image', backgroundImages[currentIndex]);
-    } else if (windowWidth < 1200 && windowWidth > 767) {
-      $('.hero').css('background-image', backgroundImagesTablet[currentIndex]);
-    } else {
-      $('.hero').css('background-image', backgroundImagesMobile[currentIndex]);
-    };
-    $('.hero .section-title').text(textContents[currentIndex]);
-    currentIndex = (currentIndex + 1) % backgroundImages.length;
-  });
-  $('#btn-prev').on('click', function (event) {
-    var windowWidth = $(window).width();
+    let href = $(this).attr('href');
 
-    if (windowWidth > 1199) {
-      $('.hero').css('background-image', backgroundImages[currentIndex]);
-    } else if (windowWidth < 1200 && windowWidth > 767) {
-      $('.hero').css('background-image', backgroundImagesTablet[currentIndex]);
-    } else {
-      $('.hero').css('background-image', backgroundImagesMobile[currentIndex]);
-    };
-    $('.hero .section-title').text(textContents[currentIndex]);
-    currentIndex > 0 ? currentIndex = (currentIndex - 1) % backgroundImages.length : currentIndex = backgroundImages.length - 1;
+    $('html, body').animate({
+      scrollTop: $(href).offset().top
+    }, {
+      duration: 700,
+      easing: "linear"
+    });
 
+    return false;
   });
-  $('#btn-current').on('click', function (event) {
-    var windowWidth = $(window).width();
-    currentIndex = Math.ceil(backgroundImages.length / 2);
-    if (windowWidth > 1199) {
-      $('.hero').css('background-image', backgroundImages[currentIndex]);
-    } else if (windowWidth < 1200 && windowWidth > 767) {
-      $('.hero').css('background-image', backgroundImagesTablet[currentIndex]);
+  $(window).scroll(function() {
+    if($(this).scrollTop() > 200) {
+      $('.header').addClass('with-bg');
     } else {
-      $('.hero').css('background-image', backgroundImagesMobile[currentIndex]);
+      $('.header').removeClass('with-bg');
     };
-    $('.hero .section-title').text(textContents[currentIndex]);
-  });
+});
+  
+// map
+const map = L.map('map').setView([50.00559189620925, 36.22920859707306], 15);
+
+const customMarker = L.icon({
+  iconUrl: '../assets/images/marker.png',
+
+  iconSize:     [106, 106], 
+  iconAnchor:   [22, 94], 
+  popupAnchor:  [30, -70] 
+});
+
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+}).addTo(map);
+
+L.marker([50.00559189620925, 36.22920859707306], {icon: customMarker}).addTo(map)
+    .bindPopup('Найбільша площа Европи')
+    .openPopup();
+
+// 
 
 });
+

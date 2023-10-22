@@ -12,8 +12,9 @@ $primaryBgColor: #FFF;
 $violetBgColor: #7E5AFF;
 $blueBgColor: #55B7FF;
 
-$headerGradientBG: linear-gradient(251deg, #7E5AFF -2.19%, #55B7FF 103.21%);
-$newsGradientBG: linear-gradient(237deg, #24CCFA 11.16%, #3C7FD4 89.18%);
+$headerGradientBG: linear-gradient(243deg, #7E5AFF 16.9%, #55B7FF 83.27%);;
+$newsGradientBG: linear-gradient(237deg, rgb(36, 204, 250) 11.16%, rgb(60, 127, 212) 89.18%);
+
 
 $dotColorInactive: #F8F1EA;
 $darkDotColorInactive: #CAC2BA;
