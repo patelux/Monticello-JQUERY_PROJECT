@@ -1001,8 +1001,16 @@ li.gallery-item:hover a:before, li.gallery-item:focus a:before {
   border: 2px solid #55B7FF;
 }
 
+.map-section {
+  position: relative;
+}
+
 #map {
   height: 700px;
+}
+#map img {
+  height: 100%;
+  object-fit: cover;
 }
 
 .leaflet-popup-content {
@@ -1031,16 +1039,37 @@ element.style {
 }
 
 .contacts .container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 414px;
+  z-index: 9999;
+  height: 540px;
   max-width: 770px;
+  background-color: #fff;
   padding: 90px 60px 68px;
+  display: none;
 }
-@media screen and (min-width: 180px) and (max-width: 767px) {
+@media screen and (max-width: 1199px) {
   .contacts .container {
+    bottom: 150px;
     padding: 40px 0px 40px;
   }
 }
+@media screen and (min-width: 180px) and (max-width: 767px) {
+  .contacts .container {
+    bottom: 50px;
+    height: auto;
+    max-width: 280px;
+    padding: 20px 5px 20px;
+  }
+}
+.contacts .container.active {
+  display: block;
+}
 
 .contacts-section_wrapper {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -1050,6 +1079,30 @@ element.style {
   .contacts-section_wrapper {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+.contacts-close-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  color: #2C4058;
+  position: absolute;
+  right: -20px;
+  top: -200px;
+  z-index: 55;
+  font-weight: 700;
+  opacity: 0.7;
+  transition: all 0.5s ease;
+}
+.contacts-close-btn:hover, .contacts-close-btn:focus {
+  transform: scale(1.2);
+  opacity: 1;
+}
+@media screen and (min-width: 180px) and (max-width: 767px) {
+  .contacts-close-btn {
+    right: 0px;
+    top: -150px;
   }
 }
 
@@ -1206,7 +1259,7 @@ element.style {
 
 .form-field {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: baseline;
 }
 .form-field:first-child {
@@ -1297,7 +1350,84 @@ element.style {
     margin: 30px auto 0px auto;
   }
 }
+.btn-submit:disabled {
+  opacity: 0.3;
+}
+.btn-submit:disabled:hover, .btn-submit:disabled:focus {
+  pointer-events: none;
+  color: #2C4058;
+  background-color: transparent;
+  border: 1px solid #2C4058;
+}
 
+.form-text.error {
+  color: #f00;
+}
+
+.form-text {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.8em;
+  color: #55b7ff;
+  font-style: italic;
+}
+
+.footer {
+  position: relative;
+}
+.footer .get-intouch {
+  width: max-content;
+  display: block;
+  position: relative;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 27px;
+  color: #2C4058;
+  background-color: transparent;
+  transition: all 0.5s ease;
+  padding: 11px 34px;
+  border: 1px solid #2C4058;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  padding: 11px 11px;
+  color: #FFF;
+  border: 2px solid #FFF;
+  transition: all 0.9s ease;
+  border-radius: 10px;
+  background-color: transparent;
+}
+@media screen and (max-width: 1199px) {
+  .footer .get-intouch {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 180px) and (max-width: 767px) {
+  .footer .get-intouch {
+    font-size: 18px;
+  }
+}
+.footer .get-intouch:hover, .footer .get-intouch:focus {
+  color: #FFF;
+  background-color: #55B7FF;
+  border: 2px solid #55B7FF;
+}
+.footer .get-intouch:hover, .footer .get-intouch:focus {
+  color: #2C4058;
+  border: 2px solid #2C4058;
+  background-color: transparent;
+}
+@media screen and (min-width: 180px) and (max-width: 767px) {
+  .footer .get-intouch {
+    font-size: 10px;
+    padding: 1px 5px;
+    top: 10px;
+  }
+}
 .footer .logo-wrapper {
   width: 241px;
   height: 54px;
@@ -1695,5 +1825,34 @@ element.style {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+  opacity: 1;
+}
+
+.to-top {
+  background: rgba(85, 183, 255, 0.5);
+  position: fixed;
+  z-index: 999;
+  bottom: 16px;
+  right: 32px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #FFF;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+.to-top:hover {
+  background: #55b7ff;
+  color: #fff;
+}
+
+.to-top.active {
+  bottom: 32px;
+  pointer-events: auto;
   opacity: 1;
 }

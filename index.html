@@ -18,9 +18,9 @@
   <link href="./styles/fonts/FontAwesome/css/regular.css" rel="stylesheet" />
   <link href="./styles/fonts/FontAwesome/css/solid.css" rel="stylesheet" />
   <link href="./styles/fonts/FontAwesome/css/all.min.css" rel="stylesheet" />
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./styles/leaflet.css">
-  
+
   <link rel="stylesheet" href="./styles/main.min.css" />
 
   <title>Monticello</title>
@@ -59,17 +59,17 @@
           <div class="social-links-wrapper">
             <ul class="social-link-list">
               <li class="social-link-item">
-                <a href="#" aria-label="facebook" class="social-link">
+                <a href="https://www.facebook.com" aria-label="facebook" class="social-link">
                   <i class="fa-brands fa-facebook-f icon-social-link"></i>
                 </a>
               </li>
               <li class="social-link-item">
-                <a href="#" aria-label="twitter" class="social-link">
+                <a href="https://twitter.com" aria-label="twitter" class="social-link">
                   <i class="fa-brands fa-twitter icon-social-link"></i>
                 </a>
               </li>
               <li class="social-link-item">
-                <a href="#" aria-label="instagram" class="social-link">
+                <a href="https://www.instagram.com" aria-label="instagram" class="social-link">
                   <i class="fa-brands fa-instagram icon-social-link"></i>
                 </a>
               </li>
@@ -178,7 +178,7 @@
                     <button class="btn-details" type="button">
                       more details
                     </button>
-                    <a class="project-map-link" href="#">
+                    <a class="project-map-link" href="#map" id="newyork">
                       <span><i class="fa-solid fa-location-dot"></i></span>New York City, United States - 1776 feet
                     </a>
                   </div>
@@ -203,7 +203,7 @@
                     <button class="btn-details" type="button">
                       more details
                     </button>
-                    <a class="project-map-link" href="#">
+                    <a class="project-map-link" href="#map" id="hongkong">
                       <span><i class="fa-solid fa-location-dot"></i></span>Hong Kong - 1588 feet
                     </a>
                   </div>
@@ -418,20 +418,25 @@
         </div>
       </section>
 
-       <!-- SECTION MAP -->
-  <div class="map" id="map">
-    
-  </div>
+      <!-- SECTION MAP -->
+      <section class="map-section">
+        <div class="map" id="map">
+          <img src="./assets/images/map-bg.jpg" alt="my-map">
+        </div>
+      </section>
+
 
       <!-- SECTION CONTACTS -->
       <section class="contacts" id="contact">
         <div class="container">
+
           <h2 class="section-title">GET IN TOUCH</h2>
           <div class="contacts-section_wrapper">
+            <button type="button" class="contacts-close-btn">X</button>
             <div class="contacts_wrapper">
               <div class="contact_tel">
-                <a class="contact_map_link" href="#">
-                  <span><i class="fa-solid fa-location-dot"></i></span>91 Nolan Extensions Suite 670
+                <a class="contact_map_link" href="#map">
+                  <span><i class="fa-solid fa-location-dot"></i></span>Nahirnyy, Kharkiv, Kharkiv Oblast, 61000
                 </a>
               </div>
               <div class="contact_tel">
@@ -449,20 +454,19 @@
               </div>
             </div>
             <div class="form_wrapper">
-              <form class="form" action="#">
-                <fieldset>
-                  <div class="form-field">
-                    <input class="form-input" type="text" name="user_name" id="user_name" placeholder="Name"
-                      maxlength="30" required>
-                  </div>
-                  <div class="form-field">
-                    <input class="form-input" type="email" name="user_email" id="user_email" placeholder="Email"
-                      required>
-                  </div>
-                  <button class="btn-submit" type="submit">
-                    submit
-                  </button>
-                </fieldset>
+              <form class="form" action="#" id="contactForm">
+                <div class="form-field">
+                  <input type="text" class="form-input" id="inputName" name="userName" placeholder="Name" maxlength="30"
+                    required>
+                  <p id="nameHelp" class="form-text error d-none">Add valid name</p>
+                  <p id="nameLenghtHelp" class="form-text d-none">You need to add at least <span
+                      id="nameDiffCount">0</span> symbols</p>
+                </div>
+                <div class="form-field">
+                  <input type="email" class="form-input" id="inputEmail" name="userEmail" placeholder="Email" required>
+                  <p id="emailHelp" class="form-text error d-none">Add valid email like "example@example.com"</p>
+                </div>
+                <button type="submit" class="btn-submit" disabled>Submit</button>
               </form>
             </div>
           </div>
@@ -473,7 +477,7 @@
 
     <footer class="footer">
       <div class="container">
-
+        <button class="get-intouch" type="button">get in touch</button>
         <div class="footer_wrapper">
           <div class="logo-wrapper">
             <a href="#" class="logo_link">
@@ -484,17 +488,17 @@
           <div class="social-links-wrapper">
             <ul class="social-link-list">
               <li class="social-link-item">
-                <a href="#" aria-label="facebook" class="social-link">
+                <a href="https://www.facebook.com" aria-label="facebook" class="social-link">
                   <i class="fa-brands fa-facebook-f icon-social-link"></i>
                 </a>
               </li>
               <li class="social-link-item">
-                <a href="#" aria-label="twitter" class="social-link">
+                <a href="https://twitter.com" aria-label="twitter" class="social-link">
                   <i class="fa-brands fa-twitter icon-social-link"></i>
                 </a>
               </li>
               <li class="social-link-item">
-                <a href="#" aria-label="instagram" class="social-link">
+                <a href="https://www.instagram.com" aria-label="instagram" class="social-link">
                   <i class="fa-brands fa-instagram icon-social-link"></i>
                 </a>
               </li>
@@ -507,6 +511,11 @@
         </div>
       </div>
     </footer>
+    <div class="scroll-up">
+      <a href="#top" class="to-top btn-scroll">
+      <i class="fa-solid fa-angle-up"></i>
+      </a>
+   </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="./js/slick.min.js"></script>

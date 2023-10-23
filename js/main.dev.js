@@ -70,18 +70,191 @@ $(document).ready(function () {
 
     ;
   }); // map
+  //50.00559189620925, 36.22920859707306
 
-  var map = L.map('map').setView([50.00559189620925, 36.22920859707306], 15);
-  var customMarker = L.icon({
-    iconUrl: '../assets/images/marker.png',
-    iconSize: [106, 106],
-    iconAnchor: [22, 94],
-    popupAnchor: [30, -70]
+  function renderMap(coord1, coord2, popupText) {
+    var map = L.map('map').setView([coord1, coord2], 15);
+    var customMarker = L.icon({
+      iconUrl: '../assets/images/marker.png',
+      iconSize: [106, 106],
+      iconAnchor: [22, 94],
+      popupAnchor: [30, -70]
+    });
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+    }).addTo(map);
+    L.marker([coord1, coord2], {
+      icon: customMarker
+    }).addTo(map).bindPopup(popupText).openPopup();
+  } // link to Ukraine
+
+
+  $('#map img').on('click', function (event) {
+    event.preventDefault();
+    renderMap(50.00559189620925, 36.22920859707306, 'Найбільша площа Европи');
+  }); // lonk to hongkong
+
+  $('#hongkong').on('click', function (event) {
+    renderMap(22.31321950088359, 114.18310920613088, 'Hong Kong');
+  }); // link to new york
+
+  $('#newyork').on('click', function (event) {
+    renderMap(40.648013862786186, -73.78004719887124, 'New York');
+  }); // contacts form visability
+
+  function toggleContactBtn(e) {
+    e.preventDefault();
+    $('#contact .container').toggleClass('active');
+  }
+
+  $('.get-intouch').on('click', function (event) {
+    toggleContactBtn(event);
   });
-  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
-  }).addTo(map);
-  L.marker([50.00559189620925, 36.22920859707306], {
-    icon: customMarker
-  }).addTo(map).bindPopup('Найбільша площа Европи').openPopup(); // 
+  $('.contacts-close-btn').on('click', function (event) {
+    event.preventDefault();
+    $('#contact .container').removeClass('active');
+  }); // Form validation
+
+  var NAME_MIN_LENGHT = 5;
+  var mediumRegex = new RegExp("^[^\s@]+@[^\s@]+\.[^\s@]+$");
+  var isValidEmail = false;
+  var isValidName = false;
+
+  function testEmailRegex(value) {
+    return mediumRegex.test(value);
+  }
+
+  function checkNameLenght() {
+    var valueLenght = window.inputName.value.length;
+    var diff = valueLenght < NAME_MIN_LENGHT ? NAME_MIN_LENGHT - valueLenght : 0;
+
+    if (diff) {
+      window.nameDiffCount.textContent = diff;
+      window.nameLenghtHelp.classList.remove('d-none');
+    } else {
+      window.nameLenghtHelp.classList.add('d-none');
+      isValidName = true;
+    }
+  }
+
+  ;
+
+  function resetValidation() {
+    window.nameHelp.classList.add('d-none');
+    window.emailHelp.classList.add('d-none');
+  }
+
+  function resetValue() {
+    window.inputName.value = '';
+    window.inputEmail.value = '';
+  }
+
+  function validateForm(event) {
+    event.preventDefault();
+    resetValidation();
+    var name = window.inputName.value;
+    var email = window.inputEmail.value;
+
+    if (!name) {
+      window.nameHelp.classList.remove('d-none');
+      return false;
+    }
+
+    if (!email) {
+      window.emailHelp.classList.remove('d-none');
+      return false;
+    }
+
+    if (!testEmailRegex(email)) {
+      window.emailHelp.classList.remove('d-none');
+    }
+
+    if (testEmailRegex(email) && email) {
+      isValidEmail = true;
+    }
+
+    isValidEmail && isValidName ? $('.btn-submit').prop('disabled', false) : $('.btn-submit').prop('disabled', true);
+  }
+
+  function formSubmit(event) {
+    var name, email, apiToken, chatId, text, urlString, response, resp;
+    return regeneratorRuntime.async(function formSubmit$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            event.preventDefault();
+            name = window.inputName.value;
+            email = window.inputEmail.value;
+
+            if (!(!name || !email)) {
+              _context.next = 5;
+              break;
+            }
+
+            return _context.abrupt("return", false);
+
+          case 5:
+            apiToken = "6601454304:AAGZE_BwzWfc-VyXuONm3wJq8a9CXkUkOV0";
+            chatId = "-1001867463614";
+            text = "\n    <b>Name: </b>".concat(name, "  \n    <b>Email: </b>").concat(email, "\n    ");
+            urlString = "https://api.telegram.org/bot".concat(apiToken, "/sendMessage");
+            _context.next = 11;
+            return regeneratorRuntime.awrap(fetch(urlString, {
+              method: 'post',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: text,
+                parse_mode: 'HTML'
+              })
+            }));
+
+          case 11:
+            response = _context.sent;
+            _context.next = 14;
+            return regeneratorRuntime.awrap(response.json());
+
+          case 14:
+            resp = _context.sent;
+            console.log(resp);
+
+            if (!resp.ok) {
+              _context.next = 22;
+              break;
+            }
+
+            alert("Ваша заявка прийнята!");
+            resetValue();
+            $('#contact .container').removeClass('active');
+            _context.next = 23;
+            break;
+
+          case 22:
+            return _context.abrupt("return", alert('Щось пішло не так, спробуйте заповнити форму знову!'));
+
+          case 23:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
+  }
+
+  window.inputName.addEventListener('input', checkNameLenght);
+  window.inputName.addEventListener('change', validateForm);
+  window.inputEmail.addEventListener('change', validateForm);
+  window.contactForm.addEventListener('submit', formSubmit); // scroll to-up
+
+  $(window).scroll(function () {
+    var toTop = $('.to-top');
+
+    if ($(this).scrollTop() > 100) {
+      toTop.addClass('active');
+    } else {
+      toTop.removeClass('active');
+    }
+  });
 });
