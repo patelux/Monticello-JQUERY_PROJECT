@@ -76,7 +76,7 @@ $(document).ready(function () {
   function renderMap(coord1, coord2, popupText) {
     var map = L.map('map').setView([coord1, coord2], 15);
     var customMarker = L.icon({
-      iconUrl: '../assets/images/markerIcon.png',
+      iconUrl: '../../Monticello-JQUERY_PROJECT/assets/images/markerIcon.png',
       iconSize: [106, 106],
       iconAnchor: [22, 94],
       popupAnchor: [30, -70]
