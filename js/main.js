@@ -64,15 +64,15 @@ $(document).ready(function () {
       duration: 700,
       easing: "linear"
     });
-
     return false;
   });
-  $(window).scroll(function() {
-    if($(this).scrollTop() > 200) {
-      $('.header').addClass('with-bg');
-    } else {
-      $('.header').removeClass('with-bg');
-    };
+// scroll to top
+$(window).scroll(function() {
+  if($(this).scrollTop() > 200) {
+    $('.header').addClass('with-bg');
+  } else {
+    $('.header').removeClass('with-bg');
+  };
 });
   
 // map
@@ -81,7 +81,7 @@ function renderMap(coord1, coord2, popupText){
 const map = L.map('map').setView([coord1, coord2], 15);
 
 const customMarker = L.icon({
-  iconUrl: '../assets/images/marker.png',
+  iconUrl: '../assets/images/markerIcon.png',
 
   iconSize:     [106, 106], 
   iconAnchor:   [22, 94], 
