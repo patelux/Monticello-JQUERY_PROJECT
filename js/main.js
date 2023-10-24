@@ -10,8 +10,6 @@ $(document).ready(function () {
   });
 
   $('.news-list').slick({
-    centerMode: true,
-    centerPadding: '30px',
     dots: true,
     arrows: true,
     infinite: true,
@@ -22,7 +20,7 @@ $(document).ready(function () {
     vertical: false,
     responsive: [
             {
-                breakpoint:1380,
+                breakpoint:1094,
                 settings:{
                     slidesToShow: 2,
                     slidesToScroll: 1,
@@ -78,7 +76,8 @@ $(window).scroll(function() {
 // map
 //50.00559189620925, 36.22920859707306
 function renderMap(coord1, coord2, popupText){
-const map = L.map('map').setView([coord1, coord2], 15);
+
+  const map = L.map('map').setView([coord1, coord2], 15);
 
 const customMarker = L.icon({
   iconUrl: '../../Monticello-JQUERY_PROJECT/assets/images/markerIcon.png',
@@ -97,19 +96,29 @@ L.marker([coord1, coord2], {icon: customMarker}).addTo(map)
     .openPopup();
 }
 // link to Ukraine
-$('#map img').on('click', function (event) {
+$('.map-section').on('click', function (event) {
   event.preventDefault();
+  // L.remove();
   renderMap(50.00559189620925, 36.22920859707306, 'Найбільша площа Европи');
 });
 // lonk to hongkong
-$('#hongkong').on('click', function (event) {
+$('#hongkong').on('click', function (event) {;
+  event.preventDefault();
   renderMap(22.31321950088359, 114.18310920613088, 'Hong Kong');
 });
 
 // link to new york
 $('#newyork').on('click', function (event) {
+  event.preventDefault();
   renderMap(40.648013862786186, -73.78004719887124, 'New York');
 });
+
+// MOUSE UNFOCUS FROM MAP
+$('.map-section').on('mouseout', function (event) {
+  event.preventDefault();
+  L.remove();
+});
+
 
 // contacts form visability
 function toggleContactBtn(e) {

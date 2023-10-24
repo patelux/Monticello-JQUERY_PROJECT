@@ -11,8 +11,6 @@ $(document).ready(function () {
     vertical: true
   });
   $('.news-list').slick({
-    centerMode: true,
-    centerPadding: '30px',
     dots: true,
     arrows: true,
     infinite: true,
@@ -22,7 +20,7 @@ $(document).ready(function () {
     slidesToScroll: 1,
     vertical: false,
     responsive: [{
-      breakpoint: 1380,
+      breakpoint: 1094,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -90,17 +88,26 @@ $(document).ready(function () {
   } // link to Ukraine
 
 
-  $('#map img').on('click', function (event) {
-    event.preventDefault();
+  $('.map-section').on('click', function (event) {
+    event.preventDefault(); // L.remove();
+
     renderMap(50.00559189620925, 36.22920859707306, 'Найбільша площа Европи');
   }); // lonk to hongkong
 
   $('#hongkong').on('click', function (event) {
+    ;
+    event.preventDefault();
     renderMap(22.31321950088359, 114.18310920613088, 'Hong Kong');
   }); // link to new york
 
   $('#newyork').on('click', function (event) {
+    event.preventDefault();
     renderMap(40.648013862786186, -73.78004719887124, 'New York');
+  }); // MOUSE UNFOCUS FROM MAP
+
+  $('.map-section').on('mouseout', function (event) {
+    event.preventDefault();
+    L.remove();
   }); // contacts form visability
 
   function toggleContactBtn(e) {

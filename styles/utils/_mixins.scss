@@ -2,8 +2,9 @@
     font-family: 'SourceSansPro';
     font-weight: 400;
     src: 
-    url(../fonts/Sourcesanspro/SourceSansPro-Regular.otf) format('otf'),
-    url(../fonts/Sourcesanspro/SourceSansPro-Regular.ttf) format('ttf'), 
+    url(./fonts/Sourcesanspro/SourceSansPro-Regular.otf) format('otf'),
+    url(./fonts/Sourcesanspro/SourceSansPro-Regular.ttf) format('ttf'),
+    url(./fonts/Sourcesanspro/SourceSansPro-Regular.woff) format('woff'), 
 }
 
 @mixin desktop {
@@ -11,13 +12,18 @@
         @content;
     }
 }
-
 @mixin tablet {
     @media screen and (max-width: 1199px) {
         @content;
     }
-}@mixin mobile {
-    @media screen and (min-width: 180px) and (max-width: 767px) {
+}
+@mixin mobile {
+    @media screen and (min-width: 306px) and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin smallmobile {
+    @media screen and (min-width: 180px) and (max-width: 305px) {
         @content;
     }
 }
