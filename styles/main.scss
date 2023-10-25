@@ -451,12 +451,14 @@ display: flex;
 .news_wrapper {
     max-width: 370px;
     min-height: 514px;
+    height: 100%;
     margin: 0 auto;
     @include tablet{
         min-width: 280px;
     }
 }
 .news-card_wrapper {
+    height: 100%;
     text-align: left;
     background-color: $secondaryTextColor;
 }
