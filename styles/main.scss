@@ -450,7 +450,7 @@ display: flex;
 
 .news_wrapper {
     max-width: 370px;
-    height: 514px;
+    min-height: 514px;
     margin: 0 auto;
     @include tablet{
         min-width: 280px;
