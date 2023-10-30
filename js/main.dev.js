@@ -103,11 +103,6 @@ $(document).ready(function () {
   $('#newyork').on('click', function (event) {
     event.preventDefault();
     renderMap(40.648013862786186, -73.78004719887124, 'New York');
-  }); // MOUSE UNFOCUS FROM MAP
-
-  $('.map-section').on('mouseout', function (event) {
-    event.preventDefault();
-    L.remove();
   }); // contacts form visability
 
   function toggleContactBtn(e) {
